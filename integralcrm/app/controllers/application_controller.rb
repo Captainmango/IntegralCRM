@@ -11,4 +11,9 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  get "/layout" do
+    erb :layout
+  end
+  
+
 end
