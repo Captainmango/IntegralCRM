@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   post "/users/signup" do
     @user = User.new(:username => params[:username], :password => params[:password])
-    if @user.new_record? && @user.save
+    if !User.find_by(username: @user.username) && @user.save
       redirect "/users/login"
     else
       "unsuccessful sign up attempt"
