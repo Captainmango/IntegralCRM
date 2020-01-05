@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    erb :welcome, :layout => :"/layouts/layout"
   end
 
   get "/landing" do

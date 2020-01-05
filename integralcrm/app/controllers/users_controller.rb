@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   # sign up to site
   get "/users/signup" do
-    erb :"/users/signup"
+    erb :"/users/signup", :layout => :"/layouts/layout"
   end
 
   post "/users/signup" do
@@ -13,7 +13,6 @@ class UsersController < ApplicationController
       "unsuccessful sign up attempt"
     end
   end
-
 
   # login to site
   post "/users/login" do
@@ -28,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   get "/users/login" do
-    erb :"/users/login"
+    erb :"/users/login", :layout => :"/layouts/layout"
   end
 
   # change details render

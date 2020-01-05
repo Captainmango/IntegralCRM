@@ -1,15 +1,25 @@
-<h3>Log in</h3>
+<h3>Please log in using your details below</h3>
 
 <br>
 <br>
 
+<div>
 <form action="/users/login" method="POST">
     <label>Username:</label>
     <input type="text" name="username" placeholder="Enter username">
-
+    <p></p>
     <label>Password:</label>
     <input type="password" name="password" placeholder="enter password">
-    
-    <input type="submit" name="submit" value="Log in">
+    <p></p>
+    <button class="w3-button w3-orange w3-padding-large w3-large w3-margin-top" type="submit" name="submit">
+    Sign up
+    </button>
 
 </form>
+<p></p>
+   <form action="/" method="GET">
+    <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit" name="submit">
+    Cancel
+    </button>
+    </form>
+</div>
