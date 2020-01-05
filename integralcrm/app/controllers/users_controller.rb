@@ -1,36 +1,47 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  get "/users" do
-    erb :"/users/index"
+  # sign up to site
+  get "/users/signup" do
+    erb :"/users/signup"
   end
 
-  # GET: /users/new
-  get "/users/new" do
-    erb :"/users/new"
+  post "/users/signup" do
+    @user = User.new(:username => params[:username], :password => params[:password])
+    if @user.new_record? && @user.save
+      redirect "/users/login"
+    else
+      "unsuccessful sign up attempt"
+    end
   end
 
-  # POST: /users
-  post "/users" do
+
+  # login to site
+  post "/users/login" do
+    @user = User.find_by!(:username => params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect "/landing"
+    else
+      "unsuccessful log in attempt"
+    end
     redirect "/users"
   end
 
-  # GET: /users/5
-  get "/users/:id" do
-    erb :"/users/show.html"
+  get "/users/login" do
+    erb :"/users/login"
   end
 
-  # GET: /users/5/edit
+  # change details render
   get "/users/:id/edit" do
     erb :"/users/edit.html"
   end
 
-  # PATCH: /users/5
+  # change details submission
   patch "/users/:id" do
     redirect "/users/:id"
   end
 
-  # DELETE: /users/5/delete
+  # remove account
   delete "/users/:id/delete" do
     redirect "/users"
   end
