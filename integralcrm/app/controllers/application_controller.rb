@@ -17,6 +17,7 @@ class ApplicationController < Sinatra::Base
   get "/dashboard" do
     @clients = Client.all
     @cases = Case.all
+    @tasks = Task.all
     erb :dashboard, :layout => :"/layouts/landing"
   end
 

@@ -44,4 +44,10 @@ class UsersController < ApplicationController
   delete "/users/:id/delete" do
     redirect "/users"
   end
+
+  get "/users/logout" do
+    session.clear
+    redirect "/users/login"
+  end
+
 end

@@ -33,7 +33,7 @@
           <h3>Open Cases</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Shares</h4>
+        <h4><%= @cases.where(status: "Open").count%></h4>
       </div>
     </div>
     <div class="w3-quarter">
@@ -43,9 +43,21 @@
           <h3>Tasks</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Users</h4>
+        <h4><%= @tasks.where(user_id: Helpers.current_user(session)).count%></h4>
       </div>
     </div>
+  </div>
+
+  <div class="w3-container">
+    
+    
+
+
+
+
+
+
+    
   </div>
 
   
