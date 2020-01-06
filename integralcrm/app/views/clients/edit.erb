@@ -1,1 +1,55 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<div class="w3-main" style="margin-left:40px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> Clients</b></h5>
+  </header>
+
+<div class="w3-row-padding w3-responsive" style="overflow-x:auto">
+    <form action="/clients/<%=@client.id%>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    
+    <label class="w3-panel">Name: </label>
+    <input type="text" name="name" value="<%=@client.name%>">
+
+    <label class="w3-panel">Contact Number: </label>
+    <input type="text" name="contact_number" value="<%=@client.contact_number%>">
+
+    <label class="w3-panel">Email: </label>
+    <input type="text" name="email" value="<%=@client.email%>">
+
+    <label class="w3-panel">1st Line of Address: </label>
+    <input type="text" name="address1" value="<%=@client.address1%>">
+
+    <label class="w3-panel">2nd Line of Address: </label>
+    <input type="text" name="address2" value="<%=@client.address2%>">
+
+    <label class="w3-panel">Postcode: </label>
+    <input type="text" name="postcode" value="<%=@client.postcode%>">
+
+    <label class="w3-panel">City: </label>
+    <input type="text" name="city" value="<%=@client.city%>">
+
+    <label class="w3-panel">Additional Info: </label>
+    <textarea name="add_info"><%=@client.add_info%></textarea>
+    <p></p>
+
+    <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit">
+    Update Client
+    </button>
+    </form>
+
+    <form action="/clients/<%=@client.id%>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button class="w3-button w3-red w3-padding-large w3-large w3-margin-top" type="submit">
+    Delete Client
+    </button>
+    </form>
+
+
+    <form action="/dashboard" method="GET">
+    <button class="w3-button w3-orange w3-padding-large w3-large w3-margin-top" type="submit" name="submit">
+    Go back
+    </button>
+    </form>
+</div>

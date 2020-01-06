@@ -1,0 +1,67 @@
+<div class="w3-main" style="margin-left:40px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-address-card w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>Clients</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4><%= @clients.count%></h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-book w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>My Cases</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4><%= @cases.where(owner: Helpers.current_user(session)).count%></h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-folder w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>Open Cases</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4><%= @cases.where(status: "Open").count%></h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-sticky-note w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>Tasks</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4><%= @tasks.where(user_id: Helpers.current_user(session)).count%></h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    
+    
+
+
+
+
+
+
+    
+  </div>
+
+  
+  
+
+
+  <!-- End page content -->

@@ -1,1 +1,41 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<div class="w3-main" style="margin-left:40px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-cloud"></i> Clients</b></h5>
+  </header>
+
+<div class="w3-row-padding w3-responsive" style="overflow-x:auto">
+    
+    <ul class="w3-ul w3-border w3-left">
+    <li><h2><%=@client.name%><h2><li>
+    <li>Contact Number: <%=@client.contact_number%></li>
+    <li>Email: <%=@client.email%></li>
+    <li>1st Line of Address: <%=@client.address1%></li>
+    <li>2nd Line of Address: <%=@client.address2%></li>
+    <li>Postcode: <%=@client.postcode%></li>
+    <li>City: <%=@client.city%></li>
+
+    <li><textarea><%=@client.add_info%></textarea></li>
+
+    </ul>
+
+    <form action="/dashboard" method="GET">
+    <button class="w3-button w3-orange w3-padding-large w3-large w3-margin-top" type="submit">
+    Go back
+    </button>
+    </form>
+
+    <form action="/clients/<%=@client.id%>/edit" method="get">
+    <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit">
+    Edit Client Details
+    </button>
+    </form>
+
+    <form action="/clients/<%=@client.id%>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button class="w3-button w3-red w3-padding-large w3-large w3-margin-top" type="submit">
+    Delete Client
+    </button>
+    </form>
+</div>
