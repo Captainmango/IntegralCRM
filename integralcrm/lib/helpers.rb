@@ -1,4 +1,4 @@
-module Helpers
+class Helpers
     def logged_in
         !!sessions[:user_id]
     end

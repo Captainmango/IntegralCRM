@@ -1,6 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+  
 
   configure do
     set :public_folder, 'public'
@@ -13,8 +14,10 @@ class ApplicationController < Sinatra::Base
     erb :welcome, :layout => :"/layouts/layout"
   end
 
-  get "/landing" do
-    erb :landing
+  get "/dashboard" do
+    @clients = Client.all
+    @cases = Case.find()
+    erb :dashboard, :layout => :"/layouts/landing"
   end
 
 end
