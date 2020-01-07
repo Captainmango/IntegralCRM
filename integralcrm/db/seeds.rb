@@ -13,16 +13,30 @@ Faker::Config.locale = 'en-GB'
         :add_info => ""
     )
 
-    @client.email = Faker::Internet.email(name => @client.name)
+    @client.email = Faker::Internet.email
     @client.save
 
 end
 
 Client.all.each do |client|
     10.times do 
-        @case = client.cases.create(:status => "Open", :open_date => Time.now.strftime("%d/%m/%Y"))
+        @case = client.cases.create(:status => "Open", 
+                                    :open_date => Time.now.strftime("%d/%m/%Y"))
         @case.save
     end
 end
+
+Case.all.each do |kase|
+
+    5.times do
+        @note = kase.notes.create(:client_id => kase.client.id,
+                                    :title => Faker::Book.title,
+                                    :content => Faker::Shakespeare.hamlet,
+                                    :owner => 1)
+                                    
+        @note.save
+    end
+end
+
 
 
