@@ -3,7 +3,7 @@
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
     <h5><b><i class="fa fa-dashboard"></i> Clients</b></h5>
-    <form action="/clients/new" method="GET" class="w3-right">
+    <form action="/clients/new" method="GET" class="w3-left">
     <button class="w3-button w3-green w3-padding-large w3-large w3-margin-top" type="submit">
     Create new Client
     </button>
@@ -14,7 +14,7 @@
 
 <div class="w3-row-padding w3-responsive" style="overflow-y:auto">
     <table class="w3-hoverable w3-border">
-    <tr>
+    <thead>
         <th>Id</th>
         <th>Name</th>
         <th>Contact Number</th>
@@ -23,8 +23,8 @@
         <th>2nd line of Address</th>
         <th>Postcode</th>
         <th>City</th>
-        
-    </tr>
+    </thead>
+      <tbody>
         <%@clients.each do |client| %>
             <tr>
                 <td><%=client.id%></td>
@@ -36,9 +36,10 @@
                 <td><%=client.postcode%></td>
                 <td><%=client.city%></td>
                             
-            </tr>
+           </tr>
 
         <%end%>
+        </tbody>
     </table>
     
 </div>
