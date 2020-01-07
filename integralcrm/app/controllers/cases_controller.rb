@@ -2,8 +2,11 @@ class CasesController < ApplicationController
 
   # GET: /cases
   get "/cases" do
-    erb :"/cases/index.html"
+    @cases = Case.all
+    erb :"/cases/index", :layout => :"/layouts/landing"
   end
+
+
 
   # GET: /cases/new
   get "/cases/new" do

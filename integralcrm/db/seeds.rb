@@ -17,3 +17,12 @@ Faker::Config.locale = 'en-GB'
     @client.save
 
 end
+
+Client.all.each do |client|
+    10.times do 
+        @case = client.cases.create(:status => "Open", :open_date => Time.now.strftime("%d/%m/%Y"))
+        @case.save
+    end
+end
+
+

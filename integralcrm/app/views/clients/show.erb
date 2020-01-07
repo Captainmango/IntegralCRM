@@ -5,33 +5,39 @@
     <h5><b><i class="fa fa-cloud"></i> Clients</b></h5>
   </header>
 
-<div class="w3-row-padding w3-responsive" style="overflow-x:auto">
+<div class="w3-row-padding w3-responsive">
+  <div class="w3-third">
+    <table class="w3-table-all w3-border w3-left">
+    <tr>
+      <td><h5>Name </h5></td>
+      <td><h5><%=@client.name%></h5></td>
+    </tr>
+
+    <tr><td><h5>Contact Number </h5></td><td><h5><%=@client.contact_number%></h5></td></tr>
+    <tr><td><h5>Email </h5></td><td><h5><%=@client.email%></h5></td></tr>
+    <tr><td><h5>1st Line of Address </h5></td><td><%=@client.address1%></h5></td></tr>
+    <tr><td><h5>2nd Line of Address </h5></td><td><h5><%=@client.address2%></h5></td></tr>
+    <tr><td><h5>Postcode </h5></td><td><h5><%=@client.postcode%></h5></td></tr>
+    <tr><td><h5>City </h5></td><td><h5><%=@client.city%></h5></td></tr>
+    </table>
+ 
+    <div class="w3-twothird">
+    <label class="w3-panel">Additional Info</label>
+    <textarea class="w3-twothird"><%=@client.add_info%></textarea>
+    </div>
+  </div>
     
-    <ul class="w3-ul w3-border w3-left">
-    <li><h2><%=@client.name%><h2><li>
-    <li>Contact Number: <%=@client.contact_number%></li>
-    <li>Email: <%=@client.email%></li>
-    <li>1st Line of Address: <%=@client.address1%></li>
-    <li>2nd Line of Address: <%=@client.address2%></li>
-    <li>Postcode: <%=@client.postcode%></li>
-    <li>City: <%=@client.city%></li>
+    
+  <div class="w3-bar">
+    
+    <a href="/clients/index" class="w3-button w3-orange w3-padding-large w3-large w3-margin-top">
+    Go back</a>
 
-    <li><textarea><%=@client.add_info%></textarea></li>
+    <a href="/clients/<%=@client.id%>/edit" class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top">
+    Edit Client Details</a>
 
-    </ul>
-
-    <form action="/dashboard" method="GET">
-    <button class="w3-button w3-orange w3-padding-large w3-large w3-margin-top" type="submit">
-    Go back
-    </button>
-    </form>
-
-    <form action="/clients/<%=@client.id%>/edit" method="get">
-    <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit">
-    Edit Client Details
-    </button>
-    </form>
-
+    <a href="/clients/<%=@client.id%>/cases" class="w3-button w3-green w3-padding-large w3-large w3-margin-top">Create new Case</a>
+  </div>
     <form action="/clients/<%=@client.id%>/delete" method="post">
     <input type="hidden" name="_method" value="delete">
     <button class="w3-button w3-red w3-padding-large w3-large w3-margin-top" type="submit">

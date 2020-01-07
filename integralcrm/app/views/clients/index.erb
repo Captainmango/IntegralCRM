@@ -12,8 +12,8 @@
 <br>
 <br>
 
-<div class="w3-row-padding w3-responsive" style="overflow-x:auto">
-    <table class="w3-hoverable">
+<div class="w3-row-padding w3-responsive" style="overflow-y:auto">
+    <table class="w3-hoverable w3-border">
     <tr>
         <th>Id</th>
         <th>Name</th>
@@ -21,20 +21,21 @@
         <th>Email</th>
         <th>1st line of Address</th>
         <th>2nd line of Address</th>
+        <th>Postcode</th>
         <th>City</th>
-        <th>Additional Info</th>
+        
     </tr>
         <%@clients.each do |client| %>
             <tr>
-                <td><a href="/clients/<%=client.id%>"><%=client.id%></td>
-                <td><%=client.name%></td>
+                <td><%=client.id%></td>
+                <td><a href="/clients/<%=client.id%>"><%=client.name%></a></td>
                 <td><%=client.contact_number%></td>
                 <td><%=client.email%></td>
                 <td><%=client.address1%></td>
                 <td><%=client.address2%></td>
                 <td><%=client.postcode%></td>
                 <td><%=client.city%></td>
-                <td><%=client.add_info%></td>             
+                            
             </tr>
 
         <%end%>

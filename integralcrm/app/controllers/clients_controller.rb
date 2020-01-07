@@ -39,9 +39,14 @@ class ClientsController < ApplicationController
     erb :"/clients/edit", :layout => :"layouts/landing"
   end
 
+  get "/clients/:id/cases" do
+    @client = Client.find_by_id(params[:id])
+    @cases = @client.cases
+    erb :"/cases/index", :layout => :"/layouts/landing"
+  end
+
   # PATCH: /clients/5
   post "/clients/:id" do
-    binding.pry
     @client = Client.find_by_id(params[:id])
     @client.name = params[:name]
     @client.contact_number = params[:contact_number]
@@ -52,7 +57,7 @@ class ClientsController < ApplicationController
     @client.city = params[:city]
     @client.add_info = params[:add_info]
     @client.save
-    redirect "/clients/index"
+    redirect "/clients/#{@client.id}"
   end
 
   # DELETE: /clients/5/delete
