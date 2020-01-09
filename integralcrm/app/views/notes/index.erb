@@ -1,1 +1,18 @@
-<h1>This is the Model's index page.</h1>
+<div class="w3-twothird w3-right">
+    <table class="w3-table-all w3-border">
+    <thead>
+        <th>Date </th>
+        <th>Owner </th>
+        <th>Title </th>
+        <th>Content </th>
+    </thead>
+    <tbody>
+        <%@notes.each do |note|%>
+        <tr>
+            <td><%=@note.created_at%></td>
+            <td><%=User.find(@note.owner)%></td>
+            <td><%=@note.title)%></td>
+            <td><%=(@note.content)%></td>
+        </tr>
+    </tbody>
+</div>

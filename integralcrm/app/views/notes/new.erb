@@ -1,1 +1,18 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+
+<div class="w3-row-padding w3-responsive" style="overflow-x:auto">
+    <form action="/notes" method="post">
+    
+    
+    <label class="w3-panel">Title: </label>
+    <input type="text" name="note[title]">
+
+    <label class="w3-panel">Content: </label>
+    <textarea rows="4" cols="50" name="note[content]"></textarea>
+    <p></p>
+
+    <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit">
+    Create Note
+    </button>
+    </form>
+
+</div>
