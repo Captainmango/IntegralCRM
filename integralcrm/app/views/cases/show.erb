@@ -1,1 +1,46 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+        
+
+
+
+<div class="w3-row-padding w3-responsive">
+  <div class="w3-third">
+    <table class="w3-table-all w3-border w3-left">
+    <tr>
+      <td><h5>Name </h5></td>
+      <td><h5><%=@client.name%></h5></td>
+    </tr>
+
+    <tr><td><h5>Id </h5></td><td><h5><%=@case.id%></h5></td></tr>
+    <tr><td><h5>Status </h5></td><td><h5><%=@case.status%></h5></td></tr>
+    <tr><td><h5>Client </h5></td><td><%=@case.client%></h5></td></tr>
+    <tr><td><h5>Open Date </h5></td><td><h5><%=@case.open_date%></h5></td></tr>
+    <tr><td><h5>Close Date </h5></td><td><h5><%=@client.close_date%></h5></td></tr>
+    
+    </table>
+ 
+    <div class="w3-twothird">
+    <label class="w3-panel">Additional Info</label>
+    <textarea class="w3-twothird"><%=@client.add_info%></textarea>
+    </div>
+
+<div class="w3-twothird w3-right">
+    <table class="w3-table-all w3-border">
+    <thead>
+        <th>Date </th>
+        <th>Owner </th>
+        <th>Title </th>
+        <th>Content </th>
+    </thead>
+    <tbody>
+        <%@notes_ordered.each do |note|%>
+        <tr>
+            <td><%=@note.created_at%></td>
+            <td><%=User.find(@note.owner)%></td>
+            <td><%=User.find(@note.title)%></td>
+            <td><%=User.find(@note.content)%></td>
+        </tr>
+    </tbody>
+    </div>
+
+  </div>
+        
