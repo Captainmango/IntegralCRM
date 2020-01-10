@@ -13,16 +13,8 @@ class ClientsController < ApplicationController
 
   # POST: /clients
   post "/clients" do
-    
-    @client = Client.create(
-      :name => params[:name],
-      :contact_number => params[:contact_number],
-      :address1 => params[:address1],
-      :address2 => params[:address2],
-      :city => params[:city],
-      :postcode => params[:postcode],
-      :email => params[:email],
-      :add_info => params[:add_info])
+    binding.pry
+    @client = Client.create(params[:client])
     @client.save
     redirect "/dashboard"
   end
@@ -47,15 +39,9 @@ class ClientsController < ApplicationController
 
   # PATCH: /clients/5
   post "/clients/:id" do
+    
     @client = Client.find_by_id(params[:id])
-    @client.name = params[:name]
-    @client.contact_number = params[:contact_number]
-    @client.email = params[:email]
-    @client.address1 = params[:address1]
-    @client.address2 = params[:address2]
-    @client.postcode = params[:postcode]
-    @client.city = params[:city]
-    @client.add_info = params[:add_info]
+    @client.update(params[:client])
     @client.save
     redirect "/clients/#{@client.id}"
   end

@@ -10,28 +10,28 @@
     <input type="hidden" name="_method" value="patch">
     
     <label class="w3-panel">Name: </label>
-    <input type="text" name="name" value="<%=@client.name%>">
+    <input type="text" name="client[name]" value="<%=@client.name%>">
 
     <label class="w3-panel">Contact Number: </label>
-    <input type="text" name="contact_number" value="<%=@client.contact_number%>">
+    <input type="text" name="client[contact_number]" value="<%=@client.contact_number%>">
 
     <label class="w3-panel">Email: </label>
-    <input type="text" name="email" value="<%=@client.email%>">
+    <input type="text" name="client[email]" value="<%=@client.email%>">
 
     <label class="w3-panel">1st Line of Address: </label>
-    <input type="text" name="address1" value="<%=@client.address1%>">
+    <input type="text" name="client[address1]" value="<%=@client.address1%>">
 
     <label class="w3-panel">2nd Line of Address: </label>
-    <input type="text" name="address2" value="<%=@client.address2%>">
+    <input type="text" name="client[address2]" value="<%=@client.address2%>">
 
     <label class="w3-panel">Postcode: </label>
-    <input type="text" name="postcode" value="<%=@client.postcode%>">
+    <input type="text" name="client[postcode]" value="<%=@client.postcode%>">
 
     <label class="w3-panel">City: </label>
-    <input type="text" name="city" value="<%=@client.city%>">
+    <input type="text" name="client[city]" value="<%=@client.city%>">
 
     <label class="w3-panel">Additional Info: </label>
-    <textarea name="add_info"><%=@client.add_info%></textarea>
+    <textarea name="client[add_info]"><%=@client.add_info%></textarea>
     <p></p>
 
     <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit">
