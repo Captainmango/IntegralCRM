@@ -4,18 +4,24 @@
 <br>
 
 <div class="w3-container">
-<form action="/users/login" method="POST">
+<div class="w3-bar">
+<form action="/users/login" method="POST" id="login-form">
     <input class="w3-panel w3-xlarge" type="text" name="username" placeholder="Username">
     <input class="w3-panel w3-xlarge" type="password" name="password" placeholder="Password">
-    <p></p>
-    <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit" name="submit">
+
+</div>
+
+<br>
+<div class="w3-bar">
+<button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit" form="login-form">
     Log in
     </button>
-
 </form>
    <form action="/" method="GET">
-    <button class="w3-button w3-orange w3-padding-large w3-large w3-margin-top" type="submit" name="submit">
+    <button class="w3-button w3-orange w3-padding-large w3-large w3-margin-top" type="submit">
     Cancel
     </button>
     </form>
+    </div>
+
 </div>

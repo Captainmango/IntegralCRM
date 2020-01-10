@@ -21,4 +21,6 @@ class ApplicationController < Sinatra::Base
     erb :dashboard, :layout => :"/layouts/landing"
   end
 
+
+
 end

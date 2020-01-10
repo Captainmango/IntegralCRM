@@ -2,30 +2,88 @@
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
+   <div class="w3-right">
+        <form action="/clients/<%=@client.id%>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button class="w3-button w3-red w3-padding-large w3-large w3-margin-top" type="submit">
+    Delete Client
+    </button>
+    </form>
+    </div>
     <h5><b><i class="fa fa-cloud"></i> Clients</b></h5>
+    
   </header>
 
 <div class="w3-row-padding w3-responsive">
-  <div class="w3-third">
+  <div class="w3-cell-row">
+  <div class="w3-third w3-padding">
+  <h5><b>Details </b></h5>
     <table class="w3-table-all w3-border w3-left">
     <tr>
-      <td><h5>Name </h5></td>
-      <td><h5><%=@client.name%></h5></td>
+      <td>Name </td>
+      <td><%=@client.name%></td>
     </tr>
 
-    <tr><td><h5>Contact Number </h5></td><td><h5><%=@client.contact_number%></h5></td></tr>
-    <tr><td><h5>Email </h5></td><td><h5><%=@client.email%></h5></td></tr>
-    <tr><td><h5>1st Line of Address </h5></td><td><%=@client.address1%></h5></td></tr>
-    <tr><td><h5>2nd Line of Address </h5></td><td><h5><%=@client.address2%></h5></td></tr>
-    <tr><td><h5>Postcode </h5></td><td><h5><%=@client.postcode%></h5></td></tr>
-    <tr><td><h5>City </h5></td><td><h5><%=@client.city%></h5></td></tr>
+    <tr><td>Contact Number </td><td><%=@client.contact_number%></td></tr>
+    <tr><td>Email </td><td><%=@client.email%></td></tr>
+    <tr><td>1st Line of Address </td><td><%=@client.address1%></td></tr>
+    <tr><td>2nd Line of Address </td><td><%=@client.address2%></td></tr>
+    <tr><td>Postcode </td><td><%=@client.postcode%></td></tr>
+    <tr><td>City </td><td><%=@client.city%></td></tr>
+    <tr><td>Additional Info </td><td><h5><%=@client.add_info%></td></tr>
     </table>
- 
-    <div class="w3-twothird">
-    <label class="w3-panel">Additional Info</label>
-    <textarea class="w3-twothird"><%=@client.add_info%></textarea>
-    </div>
   </div>
+ 
+  <div class="w3-twothird w3-padding">
+  <h5><b>Cases</b></h5>
+      <table class="w3-table-all w3-hoverable w3-border">
+      <thead>
+        <th>Id</th>
+        <th>Status</th>
+        <th>Open Date</th>
+        <th>Close Date</th>
+        <th>Last Note</th>
+    </thead>
+    <tbody>
+        <%@cases.each do |kase| %>
+            <tr>
+                <td><%=kase.id%></td>
+                <td><a href="/cases/<%=kase.id%>"><%=kase.status%></a></td>
+                <td><%=kase.open_date%></td>
+                <td><%=kase.close_date%></td>
+                <td><%=@client.notes.where("case_id = '#{kase.id}'").last.content%></td>
+                         
+            </tr>
+            </tbody>
+
+        <%end%>
+    </table>
+
+    </div>
+
+    <div class="w3-twothird w3-padding">
+      <h5><b>Notes</b></h5>
+      <table class="w3-table-all w3-hoverable w3-border">
+        <thead>
+          <th>Date</th>
+          <th>Owner</th>
+          <th>Title</th>
+          <th>Content</th>
+        </thead>
+        <tbody>
+          <%@client.notes.limit(3).each do |note|%>
+            <tr>
+              <td><%=note.created_at%></td>
+              <td><%=note.owner%></td>
+              <td><%=note.title%></td>
+              <td><%=note.content%></td>
+            </tr>
+            <%end%>
+      </table>
+      </div>
+
+
+
     
     
   <div class="w3-bar">
@@ -37,11 +95,9 @@
     Edit Client Details</a>
 
     <a href="/clients/<%=@client.id%>/cases" class="w3-button w3-green w3-padding-large w3-large w3-margin-top">Create new Case</a>
+
+    <a href="/clients/<%=@client.id%>/notes/new" class="w3-button w3-green w3-padding-large w3-large w3-margin-top">Add Note</a>
   </div>
-    <form action="/clients/<%=@client.id%>/delete" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button class="w3-button w3-red w3-padding-large w3-large w3-margin-top" type="submit">
-    Delete Client
-    </button>
-    </form>
+
+
 </div>

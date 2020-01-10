@@ -11,7 +11,7 @@
 <div class="w3-row-padding w3-responsive" style="overflow-y:auto">
     <div class="w3-twothird">
     <table class="w3-hoverable w3-border">
-    <tr>
+    <thead>
         <th>Id</th>
         <th>Status</th>
         <th>Client</th>
@@ -20,7 +20,8 @@
         <th>Most Recent Note</th>
 
         
-    </tr>
+    </thead>
+    <tbody>
         <%@cases.each do |kase| %>
             <tr>
                 <td><%=kase.id%></td>
@@ -32,6 +33,7 @@
             </tr>
 
         <%end%>
+    </tbody>
     </table>
     </div>
     

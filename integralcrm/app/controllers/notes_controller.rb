@@ -11,16 +11,29 @@ class NotesController < ApplicationController
     erb :"/notes/new", :layout => :"/layouts/landing"
   end
 
-  get "/clients/notes/new" do
-    erb :"/notes/new", :layout => :"/layouts/landing"
+  get "/clients/:id/notes/new" do
+    @client = Client.find_by_id(params[:id])
+    erb :"/notes/clientsNotesNew", :layout => :"/layouts/landing"
   end
 
-  get "/cases/notes/new" do
-    erb :"/notes/new", :layout => :"/layouts/landing"
+  get "/cases/:id/notes/new" do
+    @case = Case.find_by_id(params[:id])
+    erb :"/notes/casesNotesNew", :layout => :"/layouts/landing"
   end
 
-  post "/clients/notes" do
-    
+  post "/clients/:id/notes" do
+    @client = Client.find_by_id(params[:id])
+    @note = @client.notes.create(params[:note])
+    @note.save
+    redirect "/clients/#{@client.id}"
+  end
+
+  post "/cases/:id/notes" do
+    @case = Case.find_by_id(params[:id])
+    @note = @case.notes.create(params[:note])
+    @note.save
+    redirect "/cases/#{@case.id}"
+  end
 
   # POST: /notes
   post "/notes" do

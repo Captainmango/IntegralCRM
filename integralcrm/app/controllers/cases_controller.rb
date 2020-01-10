@@ -6,16 +6,23 @@ class CasesController < ApplicationController
     erb :"/cases/index", :layout => :"/layouts/landing"
   end
 
+  get "/my-cases" do
+    @cases = Case.all.where("owner = '#{session[:used_id]}'")
+    erb :"/cases/index", :layout => :"/layouts/landing"
+  end
+
   # GET: /cases/new
-  get "/cases/new" do
-    erb :"/cases/new"
+  get "/clients/:id/cases/new" do
+    @client = Client.find_by_id(params[:id])
+    erb :"/cases/new", :layout => :"/layouts/landing"
   end
 
   # POST: /cases
-  post "/cases" do
-    @case = Case.create(params[:case])
+  post "/clients/:id/cases" do
+    @client = Client.find_by_id(params[:id])
+    @case = @client.cases.create(params[:kase])
     @case.save
-    erb :"/cases/#{@case.id}", :layout => :"/layouts/landing"
+    redirect "/cases/#{@case.id}"
   end
 
   # GET: /cases/5

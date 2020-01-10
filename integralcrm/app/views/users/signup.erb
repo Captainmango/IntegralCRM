@@ -2,24 +2,26 @@
 
 <br>
 <br>
-<div>
-<form action="/users/signup" method="POST">
-    <label>Username: </label>
-    <input type="text" name="username" placeholder="Enter username">
-    <p></p>
-    <label>Password: </label>
-    <input type="password" name="password" minlength="8" required placeholder="enter password">
-    <p></p>
-    <button class="w3-button w3-orange w3-padding-large w3-large w3-margin-top" type="submit" name="submit">
-    Sign up
-    </button>
+<div class="w3-container">
+<div class="w3-bar">
+<form action="/users/signup" method="POST" id="signup-form">
+    <input class="w3-panel w3-xlarge" type="text" name="username" placeholder="Username">
+    <input class="w3-panel w3-xlarge" type="password" name="password" placeholder="Password">
+
 </form>
-    <p></p>
+</div>
+<br>
+<div class="w3-container">
+<button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit" form="signup-form">
+Sign up
+</button>
+
    <form action="/" method="GET">
-    <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit" name="submit">
+    <button class="w3-button w3-orange w3-padding-large w3-large w3-margin-top" type="submit">
     Cancel
     </button>
     </form>
+    </div>
 
 
 </div>

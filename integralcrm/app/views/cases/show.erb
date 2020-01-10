@@ -7,7 +7,7 @@
 
 <div class="w3-row-padding w3-responsive">
   <div class="w3-cell-row">
-    <div class="w3-third">
+    <div class="w3-third w3-padding">
       <table class="w3-table-all w3-border">
       <tr>
         <td><h5>Name </h5></td>
@@ -20,12 +20,13 @@
       <tr><td><h5>Close Date </h5></td><td><h5><%=@case.close_date%></h5></td></tr>
       </table>
     </div>
-    <div class="w3-twothird">
+    <div class="w3-twothird w3-padding">
     <table class=" w3-table-all w3-border">
       <thead>
         <th>Date </th>
         <th>Owner </th>
         <th>Title </th>
+        <th>Content </th>
       </thead>
       <tbody>
         <%@notes_ordered.each do |note|%>
@@ -33,6 +34,7 @@
             <td><%=note.created_at%></td>
             <td><%=User.find(note.owner).username%></td>
             <td><a href="/notes/<%=note.id%>"><%=note.title%></a></td>
+            <td><%=note.content%></td>
         </tr>
         <%end%>
     </tbody>
@@ -47,13 +49,13 @@
   
   <div class="w3-bar">
 
-  <a href="clients/<%=@client.id%>" class="w3-button w3-orange w3-padding-large w3-large w3-margin-top">
+  <a href="/clients/<%=@client.id%>" class="w3-button w3-orange w3-padding-large w3-large w3-margin-top">
   Go Back
   </a>
   <a href="/cases/<%=@case.id%>/edit" class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top">
   Edit Case
   </a>
-  <a href="cases/notes/new" class="w3-button w3-green w3-padding-large w3-large w3-margin-top">
+  <a href="/cases/<%=@case.id%>/notes/new" class="w3-button w3-green w3-padding-large w3-large w3-margin-top">
   Add Note
   </a>
 

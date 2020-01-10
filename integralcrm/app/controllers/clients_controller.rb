@@ -13,15 +13,16 @@ class ClientsController < ApplicationController
 
   # POST: /clients
   post "/clients" do
-    binding.pry
     @client = Client.create(params[:client])
     @client.save
+    @client.created_by = session[:user_id]
     redirect "/dashboard"
   end
 
   # GET: /clients/5
   get "/clients/:id" do
     @client = Client.find_by_id(params[:id])
+    @cases = @client.cases.order("created_at DESC").limit(5)
     erb :"/clients/show", :layout => :"/layouts/landing"
   end
 
@@ -37,6 +38,12 @@ class ClientsController < ApplicationController
     erb :"/cases/index", :layout => :"/layouts/landing"
   end
 
+  get "/clients/:id/notes" do
+    @client = Client.find_by_id(params[:id])
+    @notes = @client.notes.order("created_at DESC")
+    erb :"/notes/index", :layout => :"/layouts/landing"
+  end
+
   # PATCH: /clients/5
   post "/clients/:id" do
     
@@ -49,7 +56,13 @@ class ClientsController < ApplicationController
   # DELETE: /clients/5/delete
   post "/clients/:id/delete" do
     @client = Client.find_by_id(params[:id])
-    @client.destroy
-    redirect "/clients/index"
+    if @client.created_by == session[:user_id]
+      @client.destroy
+      redirect "/clients/index"
+    else
+      "Cannot delete clients you did not create."
+      redirect "/clients/index"
+    end
+    
   end
 end

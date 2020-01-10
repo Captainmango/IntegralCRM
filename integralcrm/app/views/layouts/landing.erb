@@ -26,8 +26,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
     <div class="w3-col s8 w3-bar">
       <span>Welcome, <strong><%= Helpers.current_user(session).username%></strong></span><br>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+      <a href="/users/<%=session[:user_id]%>/edit" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
       <a href="/users/logout" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i></a>
     </div>
   </div>
@@ -37,15 +36,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="/dashboard" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+    <a href="/dashboard" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Dashboard</a>
     <a href="/clients/index" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i> Clients</a>
-    <a href="/cases/index" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder fa-fw"></i>  Traffic</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+    <a href="/cases" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder fa-fw"></i>  All Cases</a>
+    <a href="/my-cases" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  My Cases</a>
+
   </div>
 </nav>
 
