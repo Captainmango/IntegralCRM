@@ -1,18 +1,27 @@
+<div class="w3-main" style="margin-left:40px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  </header>
+
 
 <div class="w3-row-padding w3-responsive" style="overflow-x:auto">
     <form action="/notes/<%=@note.id%>" method="post">
     <input type="hidden" name="_method" value="patch">
     
     <label class="w3-panel">Title: </label>
-    <input type="text" name="note[title]" value="<%=@note.title%>">
+    <input type="text" name="note[title]" value="<%=@note.title%>" size="100">
 
     <label class="w3-panel">Content: </label>
-    <textarea rows="4" cols="50" name="note[content]" value="<%=@note.content%>"></textarea>
+    <textarea rows="20" cols="100" name="note[content]"><%=@note.content%></textarea>
     <p></p>
 
     <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit">
     Edit Note
     </button>
     </form>
+
+</div>
 
 </div>

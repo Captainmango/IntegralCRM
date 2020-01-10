@@ -1,4 +1,9 @@
+<div class="w3-main" style="margin-left:40px;margin-top:43px;">
 
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  </header>
 
 <div class="w3-row-padding w3-responsive" style="overflow-x:auto">
         
@@ -8,5 +13,16 @@
     <li><%=@note.content%></li>
     <p></p>
     </ul>
+
+ <div class="w3-bar">
+
+  <a href="/clients/<%=@note.client.id%>" class="w3-button w3-orange w3-padding-large w3-large w3-margin-top">
+  Go Back
+  </a>
+  <a href="/notes/<%=@note.id%>/edit" class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top">
+  Edit Note
+  </a>
+
+  </div>
 
 </div>
