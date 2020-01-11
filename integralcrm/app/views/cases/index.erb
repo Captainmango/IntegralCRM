@@ -2,15 +2,15 @@
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-note"></i> Clients</b></h5>
+    <h5><b><i class="fa fa-folder"></i> My Cases</b></h5>
    
   </header>
 <br>
 <br>
 
 <div class="w3-row-padding w3-responsive" style="overflow-y:auto">
-    <div class="w3-twothird">
-    <table class="w3-hoverable w3-border">
+    <div class="w3-twothird w3-padding">
+    <table class="w3-table-all w3-hoverable w3-border">
     <thead>
         <th>Id</th>
         <th>Status</th>
@@ -26,10 +26,10 @@
             <tr>
                 <td><%=kase.id%></td>
                 <td><a href="/cases/<%=kase.id%>"><%=kase.status%></a></td>
-                <td><%=kase.client.name%></td>
+                <td><a href="/clients/<%=kase.client.id%>"><%=kase.client.name%></a></td>
                 <td><%=kase.open_date%></td>
                 <td><%=kase.close_date%></td>
-                <td><%=kase.notes.last.content%></td>         
+                <td><a href="/notes/<%=kase.notes.last.id%>"><%=kase.notes.last.title%></a></td>         
             </tr>
 
         <%end%>

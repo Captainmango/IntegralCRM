@@ -7,7 +7,8 @@ class CasesController < ApplicationController
   end
 
   get "/my-cases" do
-    @cases = Case.all.where("owner = '#{session[:used_id]}'")
+    @user = Helpers.current_user(session)
+    @cases = Case.all.where("owner = '#{@user.id}'")
     erb :"/cases/index", :layout => :"/layouts/landing"
   end
 
