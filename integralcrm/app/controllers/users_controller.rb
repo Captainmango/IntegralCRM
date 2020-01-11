@@ -32,17 +32,21 @@ class UsersController < ApplicationController
 
   # change details render
   get "/users/:id/edit" do
-    erb :"/users/edit.html"
+    @user = Helpers.current_user(session)
+    @notes = Note.where("owner ='#{@user.id}'").order("created_at DESC")
+    erb :"/users/edit", :layout => :"/layouts/landing"
   end
 
   # change details submission
-  patch "/users/:id" do
+  post "/users/:id" do
     redirect "/users/:id"
   end
 
   # remove account
-  delete "/users/:id/delete" do
-    redirect "/users"
+  post "/users/:id/delete" do
+    @user = User.find_by_id(params[:id])
+    @user.destroy
+    redirect "/"
   end
 
   get "/users/logout" do

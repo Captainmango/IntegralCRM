@@ -1,1 +1,43 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<div class="w3-main" style="margin-left:40px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-user"></i>  User Settings</b></h5>
+  </header>
+
+  <div class="w3-container">
+    <div class="w3-third w3-padding">
+      <form action="/users/<%=@user.id%>/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="w3-button w3-red w3-padding-large w3-large w3-margin-top">
+      Delete Account
+      </button>
+      </form>
+    </div>
+    <div class="w3-twothird w3-padding">
+    <table class="w3-table-all w3-border">
+    <thead>
+        <th>Date </th>
+        <th>Owner </th>
+        <th>Title </th>
+        <th>Content </th>
+    </thead>
+    <tbody>
+        <%@notes.each do |note|%>
+        <tr>
+            <td><%=note.created_at%></td>
+            <td><%=User.find(@user.id).username%></td>
+            <td><a href="/notes/<%=note.id%>"><%=note.title%></td>
+            <td><%=note.content%></td>
+        </tr>
+        <%end%>
+    </tbody>
+    </table>
+
+
+  </div>
+
+
+
+
+  </div>
