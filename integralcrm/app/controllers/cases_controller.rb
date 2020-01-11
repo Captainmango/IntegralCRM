@@ -14,6 +14,7 @@ class CasesController < ApplicationController
   # GET: /cases/new
   get "/clients/:id/cases/new" do
     @client = Client.find_by_id(params[:id])
+    @users = User.all
     erb :"/cases/new", :layout => :"/layouts/landing"
   end
 
@@ -28,7 +29,7 @@ class CasesController < ApplicationController
   # GET: /cases/5
   get "/cases/:id" do
     @case = Case.find_by_id(params[:id])
-    @user = User.find(@case.owner)
+    @user = User.find(@case.owner) || nil
     @client = @case.client
     @notes_ordered = @case.notes.order("created_at DESC")
     erb :"/cases/show", :layout => :"/layouts/landing"

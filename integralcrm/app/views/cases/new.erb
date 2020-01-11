@@ -21,6 +21,12 @@
     <label class="w3-panel">Close Date: </label>
     <input type="date" name="kase[close_date]">
 
+    <select size="5" required>
+        <%@user.each do |user|%>
+            <option value="<%=user.id%>"><%=user.username%></option>
+        <%end%>
+    </select>
+
     <label class="w3-panel">Additional Info: </label>
     <textarea name="kase[add_info]"></textarea>
     <p></p>
