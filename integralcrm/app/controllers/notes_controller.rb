@@ -13,11 +13,13 @@ class NotesController < ApplicationController
 
   get "/clients/:id/notes/new" do
     @client = Client.find_by_id(params[:id])
+    @user = Helpers.current_user(session)
     erb :"/notes/clientsNotesNew", :layout => :"/layouts/landing"
   end
 
   get "/cases/:id/notes/new" do
     @case = Case.find_by_id(params[:id])
+    @user = Helpers.current_user(session)
     erb :"/notes/casesNotesNew", :layout => :"/layouts/landing"
   end
 

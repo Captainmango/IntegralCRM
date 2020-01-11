@@ -60,7 +60,14 @@
   Add Note
   </a>
 
+  <button class="w3-button w3-red w3-padding-large w3-large w3-margin-top" type="submit" form="case-del">
+  Delete Case
+  </button>
+
   </div>
+  <form action="/cases/<%=@case.id%>/delete" method="post" id="case-del">
+    <input type="hidden" name="_method" value="delete">
+  </form>
 
   </div>
   </div>
