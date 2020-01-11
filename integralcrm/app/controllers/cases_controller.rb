@@ -30,7 +30,7 @@ class CasesController < ApplicationController
   # GET: /cases/5
   get "/cases/:id" do
     @case = Case.find_by_id(params[:id])
-    @user = User.find(@case.owner) || nil
+    @user = User.find(@case.owner)
     @client = @case.client
     @notes_ordered = @case.notes.order("created_at DESC")
     erb :"/cases/show", :layout => :"/layouts/landing"
@@ -40,21 +40,29 @@ class CasesController < ApplicationController
   get "/cases/:id/edit" do
     @case = Case.find_by_id(params[:id])
     @users = User.all
+    @current_user = Helpers.current_user(session)
     erb :"/cases/edit", :layout => :"/layouts/landing"
   end
 
   # PATCH: /cases/5
-  patch "/cases/:id" do
+  post "/cases/:id" do
     @case = Case.find_by_id(params[:id])
-    @case.update(params[:case])
+    @case.update(params[:kase])
     @case.save
-    redirect "/cases/:id"
+    redirect "/cases/#{@case.id}"
   end
 
   # DELETE: /cases/5/delete
-  delete "/cases/:id/delete" do
+  post "/cases/:id/delete" do
+    
     @case = Case.find_by_id(params[:id])
-    @case.destroy
-    redirect "/cases"
+    if Helpers.current_user(session) == @case.owner
+      @case.destroy
+      redirect "/cases/index"
+    else
+      flash[:nodel] = "Cannot delete another users' case"
+      redirect "/cases/index"
+    end
+
   end
 end

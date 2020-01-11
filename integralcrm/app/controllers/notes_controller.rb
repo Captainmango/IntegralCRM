@@ -53,6 +53,7 @@ class NotesController < ApplicationController
   # GET: /notes/5/edit
   get "/notes/:id/edit" do
     @note = Note.find_by_id(params[:id])
+    
     erb :"/notes/edit", :layout => :"/layouts/landing"
   end
 
