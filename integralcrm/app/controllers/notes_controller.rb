@@ -61,7 +61,7 @@ class NotesController < ApplicationController
         @note.update(params[:note])
         @note.save
       else
-        "Cannot update another users resource"
+        flash[:notice] = "Cannot update another users resource"
         redirect "/notes/:id"
       end
     
@@ -70,11 +70,12 @@ class NotesController < ApplicationController
   # DELETE: /notes/5/delete
   post "/notes/:id/delete" do
     @note = Note.find_by_id(params[:id])
-    if session[:user_id] == @note.owner
+    if Helpers.current_user(session) == @note.owner
       @note.destroy
+      flash[:success] = "Successfully deleted note"
       redirect "/landing"
     else
-      "can't delete other users notes"
+      flash[:notice] = "Cannot delete other users notes"
     end
 
   end

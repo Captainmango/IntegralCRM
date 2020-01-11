@@ -46,8 +46,8 @@ class ClientsController < ApplicationController
 
   # PATCH: /clients/5
   post "/clients/:id" do
-    
     @client = Client.find_by_id(params[:id])
+    @note = @client.notes.create(:title => "Details changed from", :content => "#{params[:client]}")
     @client.update(params[:client])
     @client.save
     redirect "/clients/#{@client.id}"
@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
       @client.destroy
       redirect "/clients/index"
     else
-      "Cannot delete clients you did not create."
+      flash[:nodel] = "Cannot delete clients you did not create."
       redirect "/clients/index"
     end
     
