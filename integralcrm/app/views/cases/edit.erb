@@ -1,4 +1,9 @@
+<div class="w3-main" style="margin-left:40px;margin-top:43px;">
 
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-file"></i> Cases</b></h5>
+  </header>
 
 <div class="w3-row-padding w3-responsive" style="overflow-x:auto">
     <form action="/cases/<%=@case.id%>" method="post">
@@ -17,6 +22,14 @@
     <label class="w3-panel">Close Date: </label>
     <input type="date" name="kase[close_date]" value=<%= @case.close_date%>>
 
+    <select size="5">
+        <option value="<%=@user.id%>" selected="selected"><%=@user.username%></option>
+        <%@user.each do |user|%>
+            <option value="<%=user.id%>"><%=user.username%></option>
+        <%end%>
+    </select>
+
+
     <label class="w3-panel">Additional Info: </label>
     <textarea name="kase[add_info]"><%=@case.add_info%></textarea>
     <p></p>
@@ -24,5 +37,7 @@
     <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit">
     Update Case
     </button>
+
+</div>
 
 </div>
