@@ -23,6 +23,7 @@ class ClientsController < ApplicationController
   get "/clients/:id" do
     @client = Client.find_by_id(params[:id])
     @cases = @client.cases.order("created_at DESC").limit(5)
+    @notes = Note.where("client_id = '#{@client.id}'").order("created_at DESC").limit(3)
     erb :"/clients/show", :layout => :"/layouts/landing"
   end
 

@@ -24,8 +24,9 @@ class NotesController < ApplicationController
   end
 
   post "/clients/:id/notes" do
+    binding.pry
     @client = Client.find_by_id(params[:id])
-    @note = @client.notes.create(params[:note])
+    @note = Note.create(params[:note])
     @note.save
     redirect "/clients/#{@client.id}"
   end
@@ -73,7 +74,7 @@ class NotesController < ApplicationController
   # DELETE: /notes/5/delete
   post "/notes/:id/delete" do
     @note = Note.find_by_id(params[:id])
-    if Helpers.current_user(session) == @note.owner
+    if session[:user_id] == @note.owner
       @note.destroy
       flash[:success] = "Successfully deleted note"
       redirect "/dashboard"

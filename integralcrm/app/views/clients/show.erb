@@ -71,7 +71,7 @@
           <th>Content</th>
         </thead>
         <tbody>
-          <%@client.notes.limit(3).each do |note|%>
+          <%@notes.each do |note|%>
             <tr>
               <td><%=note.created_at%></td>
               <td><%=note.owner%></td>
@@ -82,10 +82,6 @@
       </table>
       </div>
 
-
-
-    
-    
   <div class="w3-bar">
     
     <a href="/clients/index" class="w3-button w3-orange w3-padding-large w3-large w3-margin-top">
@@ -94,7 +90,7 @@
     <a href="/clients/<%=@client.id%>/edit" class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top">
     Edit Client Details</a>
 
-    <a href="/clients/<%=@client.id%>/cases" class="w3-button w3-green w3-padding-large w3-large w3-margin-top">Create new Case</a>
+    <a href="/clients/<%=@client.id%>/cases/new" class="w3-button w3-green w3-padding-large w3-large w3-margin-top">Create new Case</a>
 
     <a href="/clients/<%=@client.id%>/notes/new" class="w3-button w3-green w3-padding-large w3-large w3-margin-top">Add Note</a>
   </div>

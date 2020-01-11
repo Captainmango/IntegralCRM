@@ -58,10 +58,10 @@ class CasesController < ApplicationController
     @case = Case.find_by_id(params[:id])
     if Helpers.current_user(session) == @case.owner
       @case.destroy
-      redirect "/cases/index"
+      redirect "/cases"
     else
       flash[:nodel] = "Cannot delete another users' case"
-      redirect "/cases/index"
+      redirect "/cases"
     end
 
   end

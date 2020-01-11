@@ -2,12 +2,12 @@
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+    <h5><b><i class="fa fa-folder"></i>  Cases</b></h5>
   </header>
 
 <div class="w3-row-padding w3-responsive" style="overflow-x:auto">
     <form action="/clients/<%=@client.id%>/cases" method="post">
-    
+  
     <label class="w3-panel">Status: </label>
     <select name="kase[status]">
         <option selected="selected" value="Open">Open</option>
@@ -21,20 +21,29 @@
     <label class="w3-panel">Close Date: </label>
     <input type="date" name="kase[close_date]">
 
-    <select size="5" required>
-        <%@user.each do |user|%>
-            <option value="<%=user.id%>"><%=user.username%></option>
-        <%end%>
-    </select>
 
     <label class="w3-panel">Additional Info: </label>
     <textarea name="kase[add_info]"></textarea>
-    <p></p>
+    
+    <br>
+    <div class="w3-padding w3-third">
+
+    <select size="5" name="kase[owner]" required>
+        <%@users.each do |user|%>
+            <option value="<%=user.id%>"><%=user.username%></option>
+        <%end%>
+      </select>  
+
+      </div>
+      <div class="w3-bar">
 
     <button class="w3-button w3-yellow w3-padding-large w3-large w3-margin-top" type="submit">
     Create Case
     </button>
 
-</div>
+    </div>
+    </form>
 
+  </div>
+  
 </div>

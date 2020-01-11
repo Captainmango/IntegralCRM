@@ -8,6 +8,7 @@
 <div class="w3-row-padding w3-responsive" style="overflow-x:auto">
     <form action="/clients/<%=@client.id%>/notes" method="post">
     <input type="hidden" name="note[owner]" value="<%=@user.id%>">
+    <input type="hidden" name="note[client_id]" value="<%=@client.id%>">
     
     <label class="w3-panel">Title: </label>
     <input type="text" name="note[title]" size="100">
