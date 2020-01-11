@@ -73,9 +73,10 @@ class NotesController < ApplicationController
     if Helpers.current_user(session) == @note.owner
       @note.destroy
       flash[:success] = "Successfully deleted note"
-      redirect "/landing"
+      redirect "/dashboard"
     else
-      flash[:notice] = "Cannot delete other users notes"
+      flash[:nodel] = "Cannot delete other users notes"
+      redirect "/dashboard"
     end
 
   end

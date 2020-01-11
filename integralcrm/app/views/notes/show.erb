@@ -16,6 +16,10 @@
 
  <div class="w3-bar">
 
+  <button type="submit" class="w3-button w3-red w3-padding-large w3-large w3-margin-top" form="note-delete">
+  Delete Note
+  </button>
+
   <a href="/clients/<%=@note.client.id%>" class="w3-button w3-orange w3-padding-large w3-large w3-margin-top">
   Go Back
   </a>
@@ -24,5 +28,8 @@
   </a>
 
   </div>
+  <form action="/notes/<%=@note.id%>/delete" method="post" id="note-delete">
+    <input type="hidden" name="_method" value="delete">
+  </form>
 
 </div>
