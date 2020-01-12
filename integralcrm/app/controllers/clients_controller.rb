@@ -13,9 +13,15 @@ class ClientsController < ApplicationController
 
   post "/clients" do
     @client = Client.create(params[:client])
-    @client.save
-    @client.created_by = session[:user_id]
-    redirect "/dashboard"
+    if @client.save
+      @client.created_by = Helpers.current_user(session).id
+      flash[:green] = {:title => "Success", :text => "Successfully created client"}
+      redirect "/clients/#{@client.id}"
+    else
+      flash[:red] = {:title => "Failure", :text => "Failed to create client"}
+      redirect "/dashboard"
+    end
+    
   end
 
   # READ
@@ -55,7 +61,7 @@ class ClientsController < ApplicationController
     else
       flash[:red] = {:title => "Failure", :text => "Failed to update client"}
     end
-    
+
   end
 
   # DELETE

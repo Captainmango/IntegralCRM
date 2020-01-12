@@ -22,8 +22,13 @@ class CasesController < ApplicationController
   post "/clients/:id/cases" do
     @client = Client.find_by_id(params[:id])
     @case = @client.cases.create(params[:kase])
-    @case.save
-    redirect "/cases/#{@case.id}"
+    if @case.save
+      flash[:green] = {:title => "Success", :text => "Successfully created case"}
+      redirect "/cases/#{@case.id}"
+    else
+      flash[:red] = {:title => "Failure", :text => "Failed to create case"}
+      redirect "/dashboard"
+    end
   end
 
   # READ
@@ -53,7 +58,7 @@ class CasesController < ApplicationController
       flash[:red] = {:title => "Failure", :text => "Cannot update case"}
       redirect "/cases/#{@case.id}"
     end
-    
+
   end
 
   # DELETE

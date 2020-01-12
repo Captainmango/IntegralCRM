@@ -26,15 +26,25 @@ class NotesController < ApplicationController
   post "/clients/:id/notes" do
     @client = Client.find_by_id(params[:id])
     @note = Note.create(params[:note])
-    @note.save
-    redirect "/clients/#{@client.id}"
+    if @note.save
+      flash[:green] = {:title => "Success", :text => "Successfully created note"}
+      redirect "/clients/#{@client.id}"
+    else
+      flash[:red] = {:title => "Failure", :text => "Failed to create note"}
+      redirect "/clients/#{@client.id}"
+    end
   end
 
   post "/cases/:id/notes" do
     @case = Case.find_by_id(params[:id])
     @note = @case.notes.create(params[:note])
-    @note.save
-    redirect "/cases/#{@case.id}"
+    if @note.save
+      flash[:green] = {:title => "Success", :text => "Successfully created note"}
+      redirect "/cases/#{@case.id}"
+    else
+      flash[:red] = {:title => "Failure", :text => "Failed to create note"}
+      redirect "/cases/#{@case.id}"
+    end
   end
 
   post "/notes" do
