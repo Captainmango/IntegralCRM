@@ -9,7 +9,7 @@ class CreateClients < ActiveRecord::Migration
       t.string :postcode
       t.string :email
       t.string :add_info
-      t.string :created_by
+      t.integer :created_by
     end
   end
 end

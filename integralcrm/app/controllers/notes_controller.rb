@@ -1,12 +1,12 @@
 class NotesController < ApplicationController
 
-  # GET: /notes
+ 
   get "/notes" do
     @notes = Note.all
     erb :"/notes/index", :layout => :"/layouts/landing"
   end
 
-  # GET: /notes/new
+  # CREATE
   get "/notes/new" do
     erb :"/notes/new", :layout => :"/layouts/landing"
   end
@@ -24,7 +24,6 @@ class NotesController < ApplicationController
   end
 
   post "/clients/:id/notes" do
-    binding.pry
     @client = Client.find_by_id(params[:id])
     @note = Note.create(params[:note])
     @note.save
@@ -38,49 +37,49 @@ class NotesController < ApplicationController
     redirect "/cases/#{@case.id}"
   end
 
-  # POST: /notes
   post "/notes" do
     @note = Note.create(params[:note])
     @note.save
     redirect "/notes"
   end
 
-  # GET: /notes/5
+  # READ
   get "/notes/:id" do
     @note = Note.find_by_id(params[:id])
     erb :"/notes/show", :layout => :"/layouts/landing"
   end
 
-  # GET: /notes/5/edit
+  # UPDATE
   get "/notes/:id/edit" do
     @note = Note.find_by_id(params[:id])
     
     erb :"/notes/edit", :layout => :"/layouts/landing"
   end
 
-  # PATCH: /notes/5
   post "/notes/:id" do
       @note = Note.find_by_id(params[:id])
       if session[:user_id] == @note.owner
         @note.update(params[:note])
         @note.save
+        flash[:green] = {:title => "Success", :text => "Successfully updated note"}
+        redirect "/notes/#{@note.id}"
       else
-        flash[:notice] = "Cannot update another users resource"
-        redirect "/notes/:id"
+        flash[:red] = {:title => "Failure", :text => "Cannot update another users resource"}
+        redirect "/notes/#{@note.id}"
       end
     
   end
 
-  # DELETE: /notes/5/delete
+  # DELETE
   post "/notes/:id/delete" do
     @note = Note.find_by_id(params[:id])
     if session[:user_id] == @note.owner
       @note.destroy
-      flash[:success] = "Successfully deleted note"
+      flash[:green] = {:title => "Success", :text => "Successfully deleted note"}
       redirect "/dashboard"
     else
-      flash[:nodel] = "Cannot delete other users notes"
-      redirect "/dashboard"
+      flash[:red] = {:title => "Failure", :text => "Cannot delete other users' notes"}
+      redirect "/notes/#{@note.id}"
     end
 
   end

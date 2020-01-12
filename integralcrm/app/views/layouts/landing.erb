@@ -56,8 +56,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-panel w3-pale-<%=value%> w3-display-container">
   <span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright">&times;</span>
     <h3><%=msg[:title]%></h3>
-    <%=msg[:text]%>
-    <br>
+    <p><%=msg[:text]%></p>
+    
   </div>
   <%end%>
 <%= yield %>

@@ -1,6 +1,6 @@
 class CasesController < ApplicationController
 
-  # GET: /cases
+  
   get "/cases" do
     @cases = Case.all
     erb :"/cases/index", :layout => :"/layouts/landing"
@@ -12,14 +12,13 @@ class CasesController < ApplicationController
     erb :"/cases/index", :layout => :"/layouts/landing"
   end
 
-  # GET: /cases/new
+  # CREATE
   get "/clients/:id/cases/new" do
     @client = Client.find_by_id(params[:id])
     @users = User.all
     erb :"/cases/new", :layout => :"/layouts/landing"
   end
 
-  # POST: /cases
   post "/clients/:id/cases" do
     @client = Client.find_by_id(params[:id])
     @case = @client.cases.create(params[:kase])
@@ -27,7 +26,7 @@ class CasesController < ApplicationController
     redirect "/cases/#{@case.id}"
   end
 
-  # GET: /cases/5
+  # READ
   get "/cases/:id" do
     @case = Case.find_by_id(params[:id])
     @user = User.find(@case.owner)
@@ -36,7 +35,7 @@ class CasesController < ApplicationController
     erb :"/cases/show", :layout => :"/layouts/landing"
   end
 
-  # GET: /cases/5/edit
+  # UPDATE
   get "/cases/:id/edit" do
     @case = Case.find_by_id(params[:id])
     @users = User.all
@@ -44,23 +43,29 @@ class CasesController < ApplicationController
     erb :"/cases/edit", :layout => :"/layouts/landing"
   end
 
-  # PATCH: /cases/5
   post "/cases/:id" do
     @case = Case.find_by_id(params[:id])
     @case.update(params[:kase])
-    @case.save
-    redirect "/cases/#{@case.id}"
+    if @case.save
+      flash[:green] = {:title => "Success", :text => "Successfully updated case"}
+      redirect "/cases/#{@case.id}"
+    else
+      flash[:red] = {:title => "Failure", :text => "Cannot update case"}
+      redirect "/cases/#{@case.id}"
+    end
+    
   end
 
-  # DELETE: /cases/5/delete
+  # DELETE
   post "/cases/:id/delete" do
     
     @case = Case.find_by_id(params[:id])
     if Helpers.current_user(session) == @case.owner
       @case.destroy
+      flash[:green] = {:title => "Success", :text => "Successfully deleted case"}
       redirect "/cases"
     else
-      flash[:nodel] = "Cannot delete another users' case"
+      flash[:red] = {:title => "Failure", :text => "Cannot delete another users' case"}
       redirect "/cases"
     end
 

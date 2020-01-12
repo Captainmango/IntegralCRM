@@ -1,17 +1,16 @@
 class ClientsController < ApplicationController
 
-  # GET: /clients
   get "/clients/index" do
     @clients = Client.all
     erb :"/clients/index", :layout => :"/layouts/landing"
   end
 
-  # GET: /clients/new
+  # CREATE
+
   get "/clients/new" do
     erb :"/clients/new", :layout => :"/layouts/landing"
   end
 
-  # POST: /clients
   post "/clients" do
     @client = Client.create(params[:client])
     @client.save
@@ -19,18 +18,13 @@ class ClientsController < ApplicationController
     redirect "/dashboard"
   end
 
-  # GET: /clients/5
+  # READ
+
   get "/clients/:id" do
     @client = Client.find_by_id(params[:id])
     @cases = @client.cases.order("created_at DESC").limit(5)
     @notes = Note.where("client_id = '#{@client.id}'").order("created_at DESC").limit(3)
     erb :"/clients/show", :layout => :"/layouts/landing"
-  end
-
-  # GET: /clients/5/edit
-  get "/clients/:id/edit" do
-    @client = Client.find_by_id(params[:id])
-    erb :"/clients/edit", :layout => :"layouts/landing"
   end
 
   get "/clients/:id/cases" do
@@ -45,21 +39,32 @@ class ClientsController < ApplicationController
     erb :"/notes/index", :layout => :"/layouts/landing"
   end
 
-  # PATCH: /clients/5
-  post "/clients/:id" do
+  # UPDATE
+
+  get "/clients/:id/edit" do
     @client = Client.find_by_id(params[:id])
-    @note = @client.notes.create(:title => "Details changed from", :content => "#{params[:client]}")
-    @client.update(params[:client])
-    @client.save
-    redirect "/clients/#{@client.id}"
+    erb :"/clients/edit", :layout => :"layouts/landing"
   end
 
-  # DELETE: /clients/5/delete
+  post "/clients/:id" do
+    @client = Client.find_by_id(params[:id])
+    @client.update(params[:client])
+    if @client.save
+      flash[:green] = {:title => "Success", :text => "Successfully updated client"}
+      redirect "/clients/#{@client.id}"
+    else
+      flash[:red] = {:title => "Failure", :text => "Failed to update client"}
+    end
+    
+  end
+
+  # DELETE
+
   post "/clients/:id/delete" do
     @client = Client.find_by_id(params[:id])
     if @client.created_by == Helpers.current_user(session).id
       @client.destroy
-
+      flash[:green] = {:title => "Success", :text => "Successfully deleted client"}
       redirect "/clients/index"
     else
       flash[:red] = {:title => "Failure", :text => "Cannot delete client you did not create"}
