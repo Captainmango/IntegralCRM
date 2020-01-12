@@ -27,7 +27,8 @@ class ApplicationController < Sinatra::Base
     calendar_service = Google::Apis::CalendarV3::CalendarService.new
     calendar_service.authorization = auth_client
     @calendar = calendar_service.get_calendar('primary')
-    
+    @events = calendar_service.list_events('primary')
+
     @clients = Client.all
     @cases = Case.all
     @tasks = Task.all

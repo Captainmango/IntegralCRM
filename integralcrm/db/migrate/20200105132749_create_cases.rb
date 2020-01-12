@@ -7,6 +7,7 @@ class CreateCases < ActiveRecord::Migration
       t.string :open_date
       t.string :close_date
       t.string :add_info
+      
       t.timestamps
     end
   end
