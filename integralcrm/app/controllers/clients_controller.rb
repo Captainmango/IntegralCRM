@@ -57,11 +57,12 @@ class ClientsController < ApplicationController
   # DELETE: /clients/5/delete
   post "/clients/:id/delete" do
     @client = Client.find_by_id(params[:id])
-    if @client.created_by == session[:user_id]
+    if @client.created_by == Helpers.current_user(session).id
       @client.destroy
+
       redirect "/clients/index"
     else
-      flash[:nodel] = "Cannot delete clients you did not create."
+      flash[:red] = {:title => "Failure", :text => "Cannot delete client you did not create"}
       redirect "/clients/index"
     end
     

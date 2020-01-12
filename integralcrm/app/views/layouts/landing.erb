@@ -52,9 +52,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-
-
-
+<% flash.each do |value, msg| %>
+  <div class="w3-panel w3-pale-<%=value%> w3-display-container">
+  <span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright">&times;</span>
+    <h3><%=msg[:title]%></h3>
+    <%=msg[:text]%>
+    <br>
+  </div>
+  <%end%>
 <%= yield %>
 
 
