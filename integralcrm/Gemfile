@@ -13,7 +13,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'faker', '1.6.3'
 gem 'sinatra-flash', :require => 'sinatra/flash'
-gem 'google-api-client', '~> 0.34'
+gem 'google-api-client'
 
 
 

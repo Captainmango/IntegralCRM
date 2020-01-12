@@ -21,9 +21,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/dashboard", :layout => :"/layouts/landing"
     else
-      "unsuccessful log in attempt"
+      flash[:yellow] = {:title => "Unsuccessful", :text => "Failed to login. Please check your password and username"}
+      redirect "/"
     end
-    redirect "/users"
   end
 
   get "/users/login" do
