@@ -65,7 +65,9 @@ class CasesController < ApplicationController
   post "/cases/:id/delete" do
     
     @case = Case.find_by_id(params[:id])
-    if Helpers.current_user(session) == @case.owner
+    @notes = Note.where("case_id = #{@case.id}")
+    if Helpers.current_user(session).id == @case.owner
+      @notes.destroy_all
       @case.destroy
       flash[:green] = {:title => "Success", :text => "Successfully deleted case"}
       redirect "/cases"
