@@ -72,7 +72,7 @@ class ClientsController < ApplicationController
     @notes = Note.where("client_id = #{@client.id}")
     if @client.created_by == Helpers.current_user(session).id
       @notes.destroy_all
-      @case.destroy_all
+      @cases.destroy_all
       @client.destroy
       flash[:green] = {:title => "Success", :text => "Successfully deleted client"}
       redirect "/clients/index"
