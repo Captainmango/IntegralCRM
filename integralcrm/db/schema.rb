@@ -25,15 +25,15 @@ ActiveRecord::Schema.define(version: 20200105132819) do
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string "name"
-    t.string "contact_number"
-    t.string "address1"
-    t.string "address2"
-    t.string "city"
-    t.string "postcode"
-    t.string "email"
-    t.string "add_info"
-    t.string "created_by"
+    t.string  "name"
+    t.string  "contact_number"
+    t.string  "address1"
+    t.string  "address2"
+    t.string  "city"
+    t.string  "postcode"
+    t.string  "email"
+    t.string  "add_info"
+    t.integer "created_by"
   end
 
   create_table "notes", force: :cascade do |t|

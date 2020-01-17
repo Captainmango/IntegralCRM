@@ -19,15 +19,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/dashboard" do
+    
+    # Remove below section if not using Google API
     unless session.has_key?(:credentials)
       redirect "/oauth2callback"
     end
+    
     client_opts = JSON.parse(session[:credentials])
     auth_client = Signet::OAuth2::Client.new(client_opts)
     calendar_service = Google::Apis::CalendarV3::CalendarService.new
     calendar_service.authorization = auth_client
     @calendar = calendar_service.get_calendar('primary')
     @events = calendar_service.list_events('primary')
+    # Remove above section if not using Google API
 
     @clients = Client.all
     @cases = Case.all
