@@ -6,7 +6,7 @@ If you would like a test Gmail account for this app, please let me know and I ca
 
 ## Installation
 
-Clone to repo to a directory of your choosing. This app is a development version, so will require a client_secrets.Json file in the working tree.
+Clone repo to your machine and change directory to the integralcrm sub folder. This app is a development version, so will require a client_secrets.Json file in the working tree.
 
 ### do not put client_secrets.Json files in the working tree of this project
 
@@ -28,7 +28,7 @@ The localhost server is shutdown using the command CTRL + C. If this isn't done 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Captainmango/holiday_scraper. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Captainmango/IntegralCRM. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
