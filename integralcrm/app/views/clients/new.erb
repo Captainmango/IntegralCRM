@@ -7,6 +7,9 @@
 
 <div class="w3-row-padding w3-responsive" style="overflow-x:auto">
     <form action="/clients" method="post">
+
+    <input type="hidden" name="client[created_by]" value=<%=Helpers.current_user(session).user_id%>>
+
     <label class="w3-panel">Name: </label>
     <input type="text" name="client[name]">
 

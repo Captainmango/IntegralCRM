@@ -48,7 +48,7 @@ class CasesController < ApplicationController
     erb :"/cases/edit", :layout => :"/layouts/landing"
   end
 
-  post "/cases/:id" do
+  patch "/cases/:id" do
     @case = Case.find_by_id(params[:id])
     @case.update(params[:kase])
     if @case.save
@@ -62,7 +62,7 @@ class CasesController < ApplicationController
   end
 
   # DELETE
-  post "/cases/:id/delete" do
+  delete "/cases/:id/delete" do
     
     @case = Case.find_by_id(params[:id])
     @notes = Note.where("case_id = #{@case.id}")
