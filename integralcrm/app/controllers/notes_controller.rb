@@ -66,9 +66,9 @@ class NotesController < ApplicationController
     erb :"/notes/edit", :layout => :"/layouts/landing"
   end
 
-  post "/notes/:id" do
+  patch "/notes/:id" do
       @note = Note.find_by_id(params[:id])
-      if session[:user_id] == @note.owner
+      if Helpers.current_user(session).id == @note.owner
         @note.update(params[:note])
         @note.save
         flash[:green] = {:title => "Success", :text => "Successfully updated note"}
@@ -81,9 +81,9 @@ class NotesController < ApplicationController
   end
 
   # DELETE
-  post "/notes/:id/delete" do
+  delete "/notes/:id/delete" do
     @note = Note.find_by_id(params[:id])
-    if session[:user_id] == @note.owner
+    if Helpers.current_user(session).id == @note.owner
       @note.destroy
       flash[:green] = {:title => "Success", :text => "Successfully deleted note"}
       redirect "/dashboard"

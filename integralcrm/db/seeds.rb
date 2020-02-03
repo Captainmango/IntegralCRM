@@ -1,8 +1,11 @@
 require 'faker'
 Faker::Config.locale = 'en-GB'
 
+@user = User.create(:username => "edward", :password => "edward21")
+@user.save
+
 10.times do
-    @client = Client.create(
+    @client = @user.clients.create(
         :name => Faker::Name.name,
         :contact_number => Faker::PhoneNumber.cell_phone,
         :address1 => Faker::Address.street_address,
@@ -13,7 +16,7 @@ Faker::Config.locale = 'en-GB'
         :add_info => ""
     )
 
-    @client.created_by = 1
+
     @client.save
 
 end

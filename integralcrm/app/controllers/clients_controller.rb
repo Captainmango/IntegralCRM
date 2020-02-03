@@ -12,9 +12,9 @@ class ClientsController < ApplicationController
   end
 
   post "/clients" do
-    @client = Client.create(params[:client])
+    @user = Helpers.current_user(session)
+    @client = @user.clients.create(params[:client])
     if @client.save
-      @client.created_by = Helpers.current_user(session).id
       flash[:green] = {:title => "Success", :text => "Successfully created client"}
       redirect "/clients/#{@client.id}"
     else
@@ -52,7 +52,7 @@ class ClientsController < ApplicationController
     erb :"/clients/edit", :layout => :"layouts/landing"
   end
 
-  post "/clients/:id" do
+  patch "/clients/:id" do
     @client = Client.find_by_id(params[:id])
     @client.update(params[:client])
     if @client.save
@@ -66,11 +66,11 @@ class ClientsController < ApplicationController
 
   # DELETE
 
-  post "/clients/:id/delete" do
+  delete "/clients/:id/delete" do
     @client = Client.find_by_id(params[:id])
     @cases = Case.where("client_id = #{@client.id}")
     @notes = Note.where("client_id = #{@client.id}")
-    if @client.created_by == Helpers.current_user(session).id
+    if @client.user_id == Helpers.current_user(session).id
       @notes.destroy_all
       @cases.destroy_all
       @client.destroy

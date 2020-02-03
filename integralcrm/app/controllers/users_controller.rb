@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   post "/users/signup" do
     @user = User.new(:username => params[:username], :password => params[:password])
-    if !User.find_by(username: @user.username) && @user.save
+    if @user.save
       flash[:green] = {:title => "Success", :text => "Successfully created user account"}
       redirect "/users/login"
     else
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   # login to site
   post "/users/login" do
     @user = User.find_by!(:username => params[:username])
-    if @user && @user.authenticate(params[:password])
+    if @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:green] = {:title => "Success", :text => "Successfully logged in :)"}
       redirect "/dashboard", :layout => :"/layouts/landing"
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   # remove account
-  post "/users/:id/delete" do
+  delete "/users/:id/delete" do
     @user = User.find_by_id(params[:id])
     @user.destroy
     redirect "/"

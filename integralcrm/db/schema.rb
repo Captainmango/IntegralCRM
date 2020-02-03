@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20200105132819) do
     t.string  "postcode"
     t.string  "email"
     t.string  "add_info"
-    t.integer "created_by"
+    t.integer "user_id"
   end
 
   create_table "notes", force: :cascade do |t|
