@@ -38,6 +38,7 @@ class NotesController < ApplicationController
   post "/cases/:id/notes" do
     @case = Case.find_by_id(params[:id])
     @note = @case.notes.create(params[:note])
+    @note.client_id = @case.client.id
     if @note.save
       flash[:green] = {:title => "Success", :text => "Successfully created note"}
       redirect "/cases/#{@case.id}"
@@ -56,14 +57,20 @@ class NotesController < ApplicationController
   # READ
   get "/notes/:id" do
     @note = Note.find_by_id(params[:id])
+    redir_if_not_found(@note)
     erb :"/notes/show", :layout => :"/layouts/landing"
   end
 
   # UPDATE
   get "/notes/:id/edit" do
     @note = Note.find_by_id(params[:id])
-    
-    erb :"/notes/edit", :layout => :"/layouts/landing"
+    if Helpers.current_user(session).id == @note.owner
+      erb :"/notes/edit", :layout => :"/layouts/landing"
+    else
+      flash[:red] = {:title => "Failure", :text => "Cannot access this form. Cannot edit content"}
+      redirect "/notes/#{@note.id}"
+    end
+
   end
 
   patch "/notes/:id" do

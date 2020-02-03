@@ -57,6 +57,13 @@ class ApplicationController < Sinatra::Base
       redirect to("/dashboard")
     end
   end
+
+  private
   
+  def redir_if_not_found(resource)
+    if resource == nil
+      redirect "/dashboard"
+    end
+  end
 
 end
