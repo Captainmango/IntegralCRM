@@ -8,9 +8,11 @@ class UsersController < ApplicationController
   post "/users/signup" do
     @user = User.new(:username => params[:username], :password => params[:password])
     if !User.find_by(username: @user.username) && @user.save
+      flash[:green] = {:title => "Success", :text => "Successfully created user account"}
       redirect "/users/login"
     else
-      "unsuccessful sign up attempt"
+      flash[:red] = {:title => "Failure", :text => "unsuccessful sign up attempt, please check your username and password"}
+      redirect "/users/signup"
     end
   end
 
@@ -19,9 +21,10 @@ class UsersController < ApplicationController
     @user = User.find_by!(:username => params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      flash[:green] = {:title => "Success", :text => "Successfully logged in :)"}
       redirect "/dashboard", :layout => :"/layouts/landing"
     else
-      flash[:yellow] = {:title => "Unsuccessful", :text => "Failed to login. Please check your password and username"}
+      flash[:yellow] = {:title => "Unsuccessful", :text => "Failed to login, Please check your username and passord"}
       redirect "/"
     end
   end

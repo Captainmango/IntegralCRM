@@ -15,9 +15,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <body class="w3-light-grey">
 
   <div class="w3-container w3-red w3-center" style="padding:78px:16px">
+  <% flash.each do |value, msg| %>
+    <div class="w3-panel w3-pale-<%=value%> w3-display-container">
+    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright">&times;</span>
+    <h3><%=msg[:title]%></h3>
+    <p><%=msg[:text]%></p>
+    
+  </div>
+  <%end%>
 
       <h1 class="w3-margin w3-jumbo">Welcome to IntegralCRM</h1>
       <p class="w3-xlarge"></p>
+
+
+
       <%=yield%>
       <p class="w3-xlarge"></p>
   </div>
